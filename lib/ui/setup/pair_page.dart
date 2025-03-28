@@ -99,11 +99,7 @@ class PairPage extends HookConsumerWidget implements CobbleScreen {
     }, [scan, /*pair,*/ connectionState]);
 
     useEffect(() {
-      if (Platform.isIOS) {
-        scanControl.startBleScan();
-      } else {
-        scanControl.startClassicScan();
-      }
+       scanControl.startBleScan();
       return null;
     }, []);
 
@@ -209,20 +205,20 @@ class PairPage extends HookConsumerWidget implements CobbleScreen {
             )
             .toList(),
         if (!scan.scanning) ...[
-          /*Padding(
+          Padding(
             padding: const EdgeInsets.symmetric(horizontal: 32.0),
             child: CobbleButton(
               outlined: false,
               label: tr.pairPage.searchAgain.ble,
               onPressed: connectionState.isConnected == true || connectionState.isConnecting == true ? null : _refreshDevicesBle,
             ),
-          ),*/
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 32.0),
             child: CobbleButton(
               outlined: false,
-              label: Platform.isIOS ? tr.pairPage.searchAgain.ble : tr.pairPage.searchAgain.classic,
-              onPressed: connectionState.isConnected == true || connectionState.isConnecting == true ? null : _refreshDevices,
+              label: tr.pairPage.searchAgain.classic,
+              onPressed: connectionState.isConnected == true || connectionState.isConnecting == true ? null : _refreshDevicesClassic,
             ),
           ),
         ],
